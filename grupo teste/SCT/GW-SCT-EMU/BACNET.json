@@ -1,0 +1,1869 @@
+{
+  "general": {
+    "objectName": "TB_gateway",
+    "address": "0.0.0.0:47808",
+    "objectIdentifier": 8899,
+    "maxApduLengthAccepted": 1024,
+    "segmentationSupported": "segmentedBoth",
+    "vendorIdentifier": 1
+  },
+  "devices": [
+    {
+      "deviceName": "SPM_F5_CWP_IF-BAG1",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:126",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:52",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfBag",
+          "objectId": "binaryInput:112",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveBag",
+          "objectId": "binaryInput:81",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-BAG2",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:118",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:50",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfBag",
+          "objectId": "binaryInput:113",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveBag",
+          "objectId": "binaryInput:82",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-BAG3",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:110",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:48",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfBag",
+          "objectId": "binaryInput:114",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveBag",
+          "objectId": "binaryInput:83",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-BAC1",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:150",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:46",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfBac",
+          "objectId": "binaryInput:115",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveBac",
+          "objectId": "binaryInput:78",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-BAC2",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:142",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:44",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfBac",
+          "objectId": "binaryInput:116",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveBac",
+          "objectId": "binaryInput:79",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-BAC3",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:134",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:42",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfBac",
+          "objectId": "binaryInput:117",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveBac",
+          "objectId": "binaryInput:80",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-TR1",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:174",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:40",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfTr",
+          "objectId": "binaryInput:121",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmTrAc",
+          "objectId": "binaryInput:106",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveTr",
+          "objectId": "binaryInput:84",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-TR2",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:166",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:38",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfTr",
+          "objectId": "binaryInput:122",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmTrAc",
+          "objectId": "binaryInput:107",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveTr",
+          "objectId": "binaryInput:85",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_IF-TR3",
+      "deviceType": "Frequency Inverter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "freq",
+          "objectId": "analogInput:158",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "status",
+          "objectId": "binaryInput:36",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alIfTr",
+          "objectId": "binaryInput:123",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmTrAc",
+          "objectId": "binaryInput:108",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alChaveTr",
+          "objectId": "binaryInput:86",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_CH1",
+      "deviceType": "Chiller",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "status",
+          "objectId": "binaryInput:4",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmChAg",
+          "objectId": "binaryInput:101",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmChAc",
+          "objectId": "binaryInput:100",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alBloqCh",
+          "objectId": "binaryInput:97",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAcA",
+          "objectId": "binaryInput:66",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAcB",
+          "objectId": "binaryInput:69",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAgA",
+          "objectId": "binaryInput:72",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAgB",
+          "objectId": "binaryInput:75",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachCondC1",
+          "objectId": "analogInput:177",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachCondC2",
+          "objectId": "analogInput:178",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatCondC1",
+          "objectId": "analogInput:5",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatSuctionC1",
+          "objectId": "analogInput:6",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSuctionCompC1A",
+          "objectId": "analogInput:7",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempDischargeCompC1A",
+          "objectId": "analogInput:8",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempMotorC1A",
+          "objectId": "analogInput:9",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureCondC1",
+          "objectId": "analogInput:22",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureEvapC1",
+          "objectId": "analogInput:20",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "statusCompC1A",
+          "objectId": "binaryInput:1",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureSupplyOilCompC1A",
+          "objectId": "analogInput:21",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureDiffOilCompC1A",
+          "objectId": "analogInput:23",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatCondC2",
+          "objectId": "analogInput:10",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatSuctionC2",
+          "objectId": "analogInput:11",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSuctionCompC2B",
+          "objectId": "analogInput:12",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempDischargeCompC2B",
+          "objectId": "analogInput:13",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempMotorC2B",
+          "objectId": "analogInput:14",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureCondC2",
+          "objectId": "analogInput:26",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureEvapC2",
+          "objectId": "analogInput:24",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "statusCompC2B",
+          "objectId": "binaryInput:2",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureSupplyOilCompC2B",
+          "objectId": "analogInput:25",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureDiffOilCompC2B",
+          "objectId": "analogInput:27",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "currentTotal",
+          "objectId": "analogInput:19",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "cwPumpReq",
+          "objectId": "binaryInput:4",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "hwPumpReq",
+          "objectId": "binaryInput:5",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachEvapC1",
+          "objectId": "analogInput:179",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachEvapC2",
+          "objectId": "analogInput:180",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "VBMAG",
+          "objectId": "binaryInput:59",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "VBMAC",
+          "objectId": "binaryInput:58",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "RLA",
+          "objectId": "analogInput:17",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "setpoint",
+          "objectId": "analogInput:18",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAC",
+          "objectId": "analogInput:4",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAG",
+          "objectId": "analogInput:1",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tAAC",
+          "objectId": "analogInput:3",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tAAG",
+          "objectId": "analogInput:2",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_CH1",
+      "deviceType": "Chiller",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 180000,
+      "timeseries": [
+        {
+          "key": "alChiller",
+          "objectId": "binaryInput:3",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_CH2",
+      "deviceType": "Chiller",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "status",
+          "objectId": "binaryInput:16",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmChAg",
+          "objectId": "binaryInput:103",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmChAc",
+          "objectId": "binaryInput:102",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alBloqCh",
+          "objectId": "binaryInput:98",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAcA",
+          "objectId": "binaryInput:67",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAcB",
+          "objectId": "binaryInput:70",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAgA",
+          "objectId": "binaryInput:73",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAgB",
+          "objectId": "binaryInput:76",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachCondC1",
+          "objectId": "analogInput:181",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachCondC2",
+          "objectId": "analogInput:182",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatCondC1",
+          "objectId": "analogInput:34",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatSuctionC1",
+          "objectId": "analogInput:35",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSuctionCompC1A",
+          "objectId": "analogInput:36",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempDischargeCompC1A",
+          "objectId": "analogInput:37",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempMotorC1A",
+          "objectId": "analogInput:38",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureCondC1",
+          "objectId": "analogInput:51",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureEvapC1",
+          "objectId": "analogInput:49",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "statusCompC1A",
+          "objectId": "binaryInput:13",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureSupplyOilCompC1A",
+          "objectId": "analogInput:50",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureDiffOilCompC1A",
+          "objectId": "analogInput:52",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatCondC2",
+          "objectId": "analogInput:39",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatSuctionC2",
+          "objectId": "analogInput:40",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSuctionCompC2B",
+          "objectId": "analogInput:41",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempDischargeCompC2B",
+          "objectId": "analogInput:42",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempMotorC2B",
+          "objectId": "analogInput:43",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureCondC2",
+          "objectId": "analogInput:55",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureEvapC2",
+          "objectId": "analogInput:53",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "statusCompC2B",
+          "objectId": "binaryInput:14",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureSupplyOilCompC2B",
+          "objectId": "analogInput:54",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureDiffOilCompC2B",
+          "objectId": "analogInput:56",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "currentTotal",
+          "objectId": "analogInput:48",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "cwPumpReq",
+          "objectId": "binaryInput:16",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "hwPumpReq",
+          "objectId": "binaryInput:17",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachEvapC1",
+          "objectId": "analogInput:183",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachEvapC2",
+          "objectId": "analogInput:184",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "VBMAG",
+          "objectId": "binaryInput:57",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "VBMAC",
+          "objectId": "binaryInput:56",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "RLA",
+          "objectId": "analogInput:46",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "setpoint",
+          "objectId": "analogInput:47",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAC",
+          "objectId": "analogInput:33",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAG",
+          "objectId": "analogInput:30",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tAAC",
+          "objectId": "analogInput:32",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tAAG",
+          "objectId": "analogInput:31",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_CH2",
+      "deviceType": "Chiller",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 180000,
+      "timeseries": [
+        {
+          "key": "alChiller",
+          "objectId": "binaryInput:15",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_CH3",
+      "deviceType": "Chiller",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "status",
+          "objectId": "binaryInput:28",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmChAg",
+          "objectId": "binaryInput:105",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alVbmChAc",
+          "objectId": "binaryInput:104",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alBloqCh",
+          "objectId": "binaryInput:99",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAcA",
+          "objectId": "binaryInput:68",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAcB",
+          "objectId": "binaryInput:71",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAgA",
+          "objectId": "binaryInput:74",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alApproachAgB",
+          "objectId": "binaryInput:77",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachCondC1",
+          "objectId": "analogInput:185",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachCondC2",
+          "objectId": "analogInput:186",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatCondC1",
+          "objectId": "analogInput:63",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatSuctionC1",
+          "objectId": "analogInput:64",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSuctionCompC1A",
+          "objectId": "analogInput:65",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempDischargeCompC1A",
+          "objectId": "analogInput:66",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempMotorC1A",
+          "objectId": "analogInput:67",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureCondC1",
+          "objectId": "analogInput:80",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureEvapC1",
+          "objectId": "analogInput:78",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "statusCompC1A",
+          "objectId": "binaryInput:25",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureSupplyOilCompC1A",
+          "objectId": "analogInput:79",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureDiffOilCompC1A",
+          "objectId": "analogInput:81",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatCondC2",
+          "objectId": "analogInput:68",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSatSuctionC2",
+          "objectId": "analogInput:69",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempSuctionCompC2B",
+          "objectId": "analogInput:70",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempDischargeCompC2B",
+          "objectId": "analogInput:71",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tempMotorC2B",
+          "objectId": "analogInput:72",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureCondC2",
+          "objectId": "analogInput:84",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureEvapC2",
+          "objectId": "analogInput:82",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "statusCompC2B",
+          "objectId": "binaryInput:26",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureSupplyOilCompC2B",
+          "objectId": "analogInput:83",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "pressureDiffOilCompC2B",
+          "objectId": "analogInput:85",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "currentTotal",
+          "objectId": "analogInput:77",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "cwPumpReq",
+          "objectId": "binaryInput:28",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "hwPumpReq",
+          "objectId": "binaryInput:29",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachEvapC1",
+          "objectId": "analogInput:187",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "approachEvapC2",
+          "objectId": "analogInput:188",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "VBMAG",
+          "objectId": "binaryInput:55",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "VBMAC",
+          "objectId": "binaryInput:54",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "RLA",
+          "objectId": "analogInput:75",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "setpoint",
+          "objectId": "analogInput:76",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAC",
+          "objectId": "analogInput:62",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAG",
+          "objectId": "analogInput:59",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tAAC",
+          "objectId": "analogInput:61",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tAAG",
+          "objectId": "analogInput:60",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_CH3",
+      "deviceType": "Chiller",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 180000,
+      "timeseries": [
+        {
+          "key": "alChiller",
+          "objectId": "binaryInput:27",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_TS1",
+      "deviceType": "Temperature Sensor",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "tAAC",
+          "objectId": "analogInput:206",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAC",
+          "objectId": "analogInput:207",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tExt",
+          "objectId": "analogInput:204",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "dtAG",
+          "objectId": "analogInput:194",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tBUext",
+          "objectId": "analogInput:212",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tAAG",
+          "objectId": "analogInput:210",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tRAG",
+          "objectId": "analogInput:209",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "tMIX",
+          "objectId": "analogInput:208",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alACAcimaSetpoint",
+          "objectId": "binaryInput:124",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alAGAcimaSetpoint15",
+          "objectId": "binaryInput:125",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alAGAcimaSetpoint30",
+          "objectId": "binaryInput:129",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_EM1",
+      "deviceType": "Energy Meter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 300011,
+      "timeseries": [
+        {
+          "key": "kWh",
+          "objectId": "analogInput:104",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_DM1",
+      "deviceType": "Demand Energy Meter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "kW",
+          "objectId": "analogInput:190",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_CDT1",
+      "deviceType": "Conductivity Meter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "condutividade",
+          "objectId": "analogInput:196",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "setpoint",
+          "objectId": "analogInput:197",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alCondutBaciaAlta",
+          "objectId": "binaryInput:87",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alCondutBaciaBaixa",
+          "objectId": "binaryInput:88",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alCondutGeralAlta",
+          "objectId": "binaryInput:89",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alCondutGeralBaixa",
+          "objectId": "binaryInput:90",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_HM1",
+      "deviceType": "Hydrometer",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "hidrometro",
+          "objectId": "analogValue:",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alHmNightTowerReplacement",
+          "objectId": "binaryInput:",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alHmDayTowerReplacement",
+          "objectId": "binaryInput:",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_HM2",
+      "deviceType": "Hydrometer",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "hidrometro",
+          "objectId": "analogValue:",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alHmNightAgReplacement",
+          "objectId": "binaryInput:",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alHmDayAgReplacement",
+          "objectId": "binaryInput:",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_HM3",
+      "deviceType": "Hydrometer",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "hidrometro",
+          "objectId": "analogValue:",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alHmNightTowerDrain",
+          "objectId": "binaryInput:",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alHmDayTowerDrain",
+          "objectId": "binaryInput:",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_PS1",
+      "deviceType": "Pressure Sensor",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "DPpressao",
+          "objectId": "analogInput:213",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_MV1",
+      "deviceType": "Actuator",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "perc",
+          "objectId": "analogInput:217",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_LS1",
+      "deviceType": "Liquid Level Sensor",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "status",
+          "objectId": "binaryInput:64",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alReserv",
+          "objectId": "binaryInput:171",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_LS2",
+      "deviceType": "Liquid Level Sensor",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "status",
+          "objectId": "binaryInput:65",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_SCH1",
+      "deviceType": "Controller",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "status",
+          "objectId": "binaryInput:63",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alCagAuto",
+          "objectId": "binaryInput:91",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alCagDesligado",
+          "objectId": "binaryInput:92",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "alCagManual",
+          "objectId": "binaryInput:93",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_HS1",
+      "deviceType": "Weather Station",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "humidity",
+          "objectId": "analogInput:203",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_BTUM1",
+      "deviceType": "BTU Meter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "kWporTR",
+          "objectId": "analogInput:189",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "TR",
+          "objectId": "analogInput:195",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "TRh",
+          "objectId": "analogInput:247",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_CWP_FM1",
+      "deviceType": "Flowmeter",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "vazao",
+          "objectId": "analogInput:193",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_FG5_SUB-CWP-FANCOILS_EM1",
+      "deviceType": "CWP Fancoil",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "kWh",
+          "objectId": "analogInput:211",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_FG5_SUB-FANCOILS_EM1",
+      "deviceType": "SUB Fancoil",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 600000,
+      "timeseries": [
+        {
+          "key": "kWh",
+          "objectId": "analogInput:202",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F1_ILUM_CA5_C1",
+      "deviceType": "Ilumination",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "ilumC1",
+          "objectId": "binaryInput:128",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC3",
+          "objectId": "binaryInput:155",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC2",
+          "objectId": "binaryInput:156",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC4",
+          "objectId": "binaryInput:157",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC5",
+          "objectId": "binaryInput:158",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC6",
+          "objectId": "binaryInput:159",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC7",
+          "objectId": "binaryInput:160",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC8",
+          "objectId": "binaryInput:161",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC9",
+          "objectId": "binaryInput:162",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC10",
+          "objectId": "binaryInput:163",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC11",
+          "objectId": "binaryInput:164",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC12",
+          "objectId": "binaryInput:165",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC13",
+          "objectId": "binaryInput:166",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC14",
+          "objectId": "binaryInput:167",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC15",
+          "objectId": "binaryInput:168",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC16",
+          "objectId": "binaryInput:169",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F1_ILUM_CA5_C2",
+      "deviceType": "Ilumination",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "ilumC2",
+          "objectId": "binaryInput:148",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC3",
+          "objectId": "binaryInput:149",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC8",
+          "objectId": "binaryInput:150",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC10",
+          "objectId": "binaryInput:153",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC14",
+          "objectId": "binaryInput:154",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F2_ILUM_CA6_C1",
+      "deviceType": "Ilumination",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "ilumC2",
+          "objectId": "binaryInput:175",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC7",
+          "objectId": "binaryInput:176",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC8",
+          "objectId": "binaryInput:177",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC9",
+          "objectId": "binaryInput:178",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC11",
+          "objectId": "binaryInput:179",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC13",
+          "objectId": "binaryInput:180",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F2_ILUM_CA7_C2",
+      "deviceType": "Ilumination",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "ilumC1",
+          "objectId": "binaryInput:136",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC2",
+          "objectId": "binaryInput:137",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC3",
+          "objectId": "binaryInput:138",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC4",
+          "objectId": "binaryInput:139",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC5",
+          "objectId": "binaryInput:140",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC6",
+          "objectId": "binaryInput:141",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC7",
+          "objectId": "binaryInput:142",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC8",
+          "objectId": "binaryInput:143",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC9",
+          "objectId": "binaryInput:144",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC10",
+          "objectId": "binaryInput:145",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC11",
+          "objectId": "binaryInput:146",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC12",
+          "objectId": "binaryInput:147",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC13",
+          "objectId": "binaryInput:152",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F3_ILUM_CA8_C2",
+      "deviceType": "Ilumination",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "ilumC3",
+          "objectId": "binaryInput:130",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC6",
+          "objectId": "binaryInput:132",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC2",
+          "objectId": "binaryInput:133",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC11",
+          "objectId": "binaryInput:134",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC8",
+          "objectId": "binaryInput:135",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F4_ILUM_CA9_C2",
+      "deviceType": "Ilumination",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "ilumC1",
+          "objectId": "binaryInput:181",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC2",
+          "objectId": "binaryInput:182",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC3",
+          "objectId": "binaryInput:183",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC4",
+          "objectId": "binaryInput:184",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC5",
+          "objectId": "binaryInput:185",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC6",
+          "objectId": "binaryInput:186",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC7",
+          "objectId": "binaryInput:187",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_ILUM_CA10_C2",
+      "deviceType": "Ilumination",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "ilumC8",
+          "objectId": "binaryInput:188",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC9",
+          "objectId": "binaryInput:189",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC10",
+          "objectId": "binaryInput:190",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "ilumC11",
+          "objectId": "binaryInput:191",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F1_FC_CA1_C1",
+      "deviceType": "Fancoil",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "fancoil03",
+          "objectId": "analogInput:198",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil22",
+          "objectId": "analogInput:199",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil24",
+          "objectId": "analogInput:200",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil25",
+          "objectId": "analogInput:220",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil26",
+          "objectId": "analogInput:221",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil09",
+          "objectId": "analogInput:222",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil14",
+          "objectId": "analogInput:223",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil02",
+          "objectId": "analogInput:224",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil16",
+          "objectId": "analogInput:225",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil21",
+          "objectId": "analogInput:226",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil04",
+          "objectId": "analogInput:227",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F2_FC_CA2_C1",
+      "deviceType": "Fancoil",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "fancoil27",
+          "objectId": "analogInput:228",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil10",
+          "objectId": "analogInput:229",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil01",
+          "objectId": "analogInput:230",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil12",
+          "objectId": "analogInput:231",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil06",
+          "objectId": "analogInput:232",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil28",
+          "objectId": "analogInput:233",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil07",
+          "objectId": "analogInput:234",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil19",
+          "objectId": "analogInput:235",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil08",
+          "objectId": "analogInput:236",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil05",
+          "objectId": "analogInput:237",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F2_FC_CA2_C2",
+      "deviceType": "Fancoil",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "fancoil11",
+          "objectId": "analogInput:218",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil20",
+          "objectId": "analogInput:219",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F4_FC_CA3_C2",
+      "deviceType": "Fancoil",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "fancoil13",
+          "objectId": "analogInput:238",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil17",
+          "objectId": "analogInput:239",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil15",
+          "objectId": "analogInput:240",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil18",
+          "objectId": "analogInput:241",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil23",
+          "objectId": "analogInput:242",
+          "propertyId": "presentValue"
+        },
+        {
+          "key": "fancoil30",
+          "objectId": "analogInput:243",
+          "propertyId": "presentValue"
+        }
+      ]
+    },
+    {
+      "deviceName": "SPM_F5_FC_CA4_C2",
+      "deviceType": "Fancoil",
+      "address": "192.168.4.140:47808",
+      "pollPeriod": 60000,
+      "timeseries": [
+        {
+          "key": "fancoil29",
+          "objectId": "analogInput:244",
+          "propertyId": "presentValue"
+        }
+      ]
+    }
+  ]
+}

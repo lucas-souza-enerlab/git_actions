@@ -1,0 +1,76 @@
+name: Update ThingsBoard Connectors
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "**/*.json"         # dispara quando json mudar
+  workflow_dispatch:         # permite rodar manualmente
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      TB_URL: ${{ vars.TB_URL }}       # defina em Repository Variables (ou troque por secret se preferir)
+      TB_USER: ${{ secrets.TB_USER }}  # defina em Secrets
+      TB_PASS: ${{ secrets.TB_PASS }}  # defina em Secrets
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python setup
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Detect changed JSON files (push)
+        if: github.event_name == 'push'
+        id: diff
+        run: |
+          echo "Detectando arquivos JSON modificados..."
+          git fetch --depth=2 origin main || true
+          FILES=$(git diff --name-only HEAD~1 HEAD | grep -Ei '\.json$' || true)
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "Alterados:"
+          echo "$FILES"
+
+
+      - name: Set manual file list (dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        id: manual
+        run: |
+          # opcional: rode manualmente editando a lista aqui (ou com inputs futuramente)
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update connectors
+        run: |
+          FILES="${{ steps.diff.outputs.files }}${{ steps.manual.outputs.files }}"
+          if [ -z "$FILES" ]; then
+            echo "Nenhum .json alterado. Nada a fazer."
+            exit 0
+          fi
+
+          # filtra apenas arquivos existentes (podem haver deletes)
+          LIST=""
+          for f in $FILES; do
+            if [ -f "$f" ]; then
+              LIST="$LIST $f"
+            fi
+          done
+
+          if [ -z "$LIST" ]; then
+            echo "Nenhum arquivo válido encontrado."
+            exit 0
+          fi
+
+          echo "Atualizando:"
+          echo "$LIST"
+          python update_connector_repo.py $LIST
