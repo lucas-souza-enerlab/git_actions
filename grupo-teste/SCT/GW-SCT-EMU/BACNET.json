@@ -1,8 +1,8 @@
 {
   "general": {
-    "objectName": "PQP",
+    "objectName": "Lucas",
     "address": "0.0.0.0:47808",
-    "objectIdentifier": 666,
+    "objectIdentifier": 777,
     "maxApduLengthAccepted": 1476,
     "segmentationSupported": "segmentedBoth",
     "vendorIdentifier": 15
