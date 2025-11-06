@@ -4,73 +4,63 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "**/*.json"         # dispara quando json mudar
-  workflow_dispatch:         # permite rodar manualmente
+      - "infra/thingsboard/**/**/connectors/*.json"   # dispara só pra JSONs dentro de connectors/
+  workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     env:
-      TB_URL: ${{ vars.TB_URL }}       # defina em Repository Variables (ou troque por secret se preferir)
-      TB_USER: ${{ secrets.TB_USER }}  # defina em Secrets
-      TB_PASS: ${{ secrets.TB_PASS }}  # defina em Secrets
+      TB_URL: ${{ vars.TB_URL }}
+      TB_USER: ${{ secrets.TB_USER }}
+      TB_PASS: ${{ secrets.TB_PASS }}
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Python setup
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install deps
+      - name: Install dependencies
         run: pip install requests
 
-      - name: Detect changed JSON files (push)
-        if: github.event_name == 'push'
+      - name: Detect changed connector JSONs
         id: diff
         run: |
-          echo "Detectando arquivos JSON modificados..."
+          echo "Detectando JSONs modificados..."
           git fetch --depth=2 origin main || true
-          FILES=$(git diff --name-only HEAD~1 HEAD | grep -Ei '\.json$' || true)
+          FILES=$(git diff --name-only HEAD~1 HEAD | grep -E 'packages/thingsboard/.*/connectors/.*\.json$' || true)
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          echo "Alterados:"
+          echo "Arquivos alterados:"
           echo "$FILES"
 
-
-      - name: Set manual file list (dispatch)
-        if: github.event_name == 'workflow_dispatch'
-        id: manual
+      - name: Update ThingsBoard connectors
         run: |
-          # opcional: rode manualmente editando a lista aqui (ou com inputs futuramente)
-          echo "files<<EOF" >> $GITHUB_OUTPUT
-          echo "" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-
-      - name: Update connectors
-        run: |
-          FILES="${{ steps.diff.outputs.files }}${{ steps.manual.outputs.files }}"
+          FILES="${{ steps.diff.outputs.files }}"
           if [ -z "$FILES" ]; then
-            echo "Nenhum .json alterado. Nada a fazer."
+            echo "Nenhum conector JSON alterado. Nada a fazer."
             exit 0
           fi
 
-          # filtra apenas arquivos existentes (podem haver deletes)
-          LIST=""
+          VALID=""
           for f in $FILES; do
             if [ -f "$f" ]; then
-              LIST="$LIST $f"
+              VALID="$VALID $f"
             fi
           done
 
-          if [ -z "$LIST" ]; then
+          if [ -z "$VALID" ]; then
             echo "Nenhum arquivo válido encontrado."
             exit 0
           fi
 
-          echo "Atualizando:"
-          echo "$LIST"
-          python update_connector_repo.py $LIST
+          echo "Atualizando conectores:"
+          echo "$VALID"
+
+          python tools/scripts/ci-cd/update_connector_repo.py $VALID
