@@ -121,7 +121,7 @@ def infer_from_path(path):
     """Extrai gateway e conector a partir do caminho do arquivo"""
     p = pathlib.Path(path)
     gateway_name = p.parent.parent.name
-    connector_name = p.stem()
+    connector_name = p.stem
     with open(path, "r") as f:
         connector_json = json.load(f)
     return gateway_name, connector_name, connector_json
