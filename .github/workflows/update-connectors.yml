@@ -1,39 +1,31 @@
-name: Update ThingsBoard Connectors
-
 on:
   push:
     branches: [ "main" ]
     paths:
-      - "infra/thingsboard/**/**/connectors/*.json"   # dispara só pra JSONs dentro de connectors/
+      - "infra/thingsboard/**/connectors/*.json"
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
-
     env:
       TB_URL: ${{ vars.TB_URL }}
       TB_USER: ${{ secrets.TB_USER }}
       TB_PASS: ${{ secrets.TB_PASS }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
-      - name: Install dependencies
-        run: pip install requests
+      - run: pip install requests
 
       - name: Detect changed connector JSONs
         id: diff
         run: |
           echo "Detectando JSONs modificados..."
           git fetch --depth=2 origin main || true
-          FILES=$(git diff --name-only HEAD~1 HEAD | grep -E 'packages/thingsboard/.*/connectors/.*\.json$' || true)
+          FILES=$(git diff --name-only HEAD~1 HEAD | grep -E 'infra/thingsboard/.*/connectors/.*\.json$' || true)
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -55,12 +47,7 @@ jobs:
             fi
           done
 
-          if [ -z "$VALID" ]; then
-            echo "Nenhum arquivo válido encontrado."
-            exit 0
-          fi
-
-          echo "Atualizando conectores:"
+          echo "Arquivos válidos:"
           echo "$VALID"
 
           python tools/scripts/ci-cd/update_connector_repo.py $VALID
