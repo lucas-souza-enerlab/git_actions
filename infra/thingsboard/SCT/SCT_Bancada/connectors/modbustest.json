@@ -2,7 +2,7 @@
     "master": {
       "slaves": [
         {
-          "host": "6.0.0.6",
+          "host": "6.6.6.6",
           "port": 5021,
           "type": "tcp",
           "method": "socket",
