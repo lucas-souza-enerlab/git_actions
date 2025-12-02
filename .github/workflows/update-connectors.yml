@@ -15,39 +15,37 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
       - run: pip install requests
 
       - name: Detect changed connector JSONs
         id: diff
         run: |
           echo "Detectando JSONs modificados..."
+
           git fetch --depth=2 origin main || true
-          FILES=$(git diff --name-only $(git rev-parse HEAD^) HEAD | grep -E 'infra/thingsboard/.*/connectors/.*\.json$' || true)
+
+          # Agora inclui STATUS (A/M/D)
+          FILES=$(git diff --name-status $(git rev-parse HEAD^) HEAD | grep -E 'infra/thingsboard/.*/connectors/.*\.json$' || true)
+
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          echo "Arquivos alterados:"
+
+          echo "Alterações detectadas:"
           echo "$FILES"
 
       - name: Update ThingsBoard connectors
         run: |
           FILES="${{ steps.diff.outputs.files }}"
+
           if [ -z "$FILES" ]; then
             echo "Nenhum conector JSON alterado. Nada a fazer."
             exit 0
           fi
 
-          VALID=""
-          for f in $FILES; do
-            if [ -f "$f" ]; then
-              VALID="$VALID $f"
-            fi
-          done
-
-          echo "Arquivos válidos:"
-          echo "$VALID"
-
-          python tools/scripts/ci-cd/update_connector_repo.py $VALID
+          python tools/scripts/ci-cd/update_connector_repo.py $FILES
