@@ -1,0 +1,524 @@
+{
+    "master": {
+      "slaves": [
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 41,
+          "deviceName": "SCP_F-1_ST2406_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 42,
+          "deviceName": "SCP_F-1_ST2408_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 43,
+          "deviceName": "SCP_F-1_ST2143_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 44,
+          "deviceName": "SCP_F-1_ST2401_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 45,
+          "deviceName": "SCP_F-1_ST2404_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 46,
+          "deviceName": "SCP_F-1_ST2405_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 47,
+          "deviceName": "SCP_F-1_ST2133_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 48,
+          "deviceName": "SCP_F-1_ST2137_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 49,
+          "deviceName": "SCP_F-1_ST2139_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 50,
+          "deviceName": "SCP_F-1_ST2140_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 51,
+          "deviceName": "SCP_F-1_ST1122_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 52,
+          "deviceName": "SCP_F-1_ST31A_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 53,
+          "deviceName": "SCP_F-1_STCO2_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 54,
+          "deviceName": "SCP_F-1_ST2403_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 55,
+          "deviceName": "SCP_F-1_ST2134_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        },
+        {
+          "host": "192.168.0.23",
+          "port": 8899,
+          "type": "tcp",
+          "method": "socket",
+          "timeout": 35,
+          "byteOrder": "BIG",
+          "wordOrder": "BIG",
+          "retries": true,
+          "retryOnEmpty": true,
+          "retryOnInvalid": true,
+          "pollPeriod": 600000,
+          "unitId": 56,
+          "deviceName": "SCP_F-1_ST2142_EM1",
+          "deviceType": "Store Energy Meter",
+          "connectAttemptTimeMs": 5000,
+          "connectAttemptCount": 5,
+          "waitAfterFailedAttemptsMs": 120000,
+          "timeseries": [
+            {
+              "tag": "kWh",
+              "type": "32float",
+              "functionCode": 4,
+              "objectsCount": 2,
+              "address": 300
+            }
+          ],
+          "reportStrategy": {
+            "type": "ON_REPORT_PERIOD",
+            "reportPeriod": 600000
+          }
+        }
+      ]
+    },
+    "slave": {},
+    "logLevel": "DEBUG",
+    "name": "modbus-3",
+    "enableRemoteLogging": false,
+    "id": "668b3204-5b93-43d7-8fce-0ceac058d66c",
+    "configVersion": "3.7.9"
+  }

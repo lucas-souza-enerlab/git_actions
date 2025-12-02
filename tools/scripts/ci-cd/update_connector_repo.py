@@ -65,11 +65,11 @@ def load_connectors_from_repo(gateway_folder):
 
 
 def sync_gateway(token, gateway_name):
-    print(f"\n🔄 Sincronizando gateway: {gateway_name}")
+    print(f"\nSincronizando gateway: {gateway_name}")
 
     gw_path = pathlib.Path("infra/thingsboard") / gateway_name
     if not gw_path.exists():
-        print(f"❌ Pasta do gateway '{gateway_name}' não encontrada no repo!")
+        print(f"Pasta do gateway '{gateway_name}' não encontrada no repo!")
         return
 
     connectors = load_connectors_from_repo(gw_path)
@@ -93,16 +93,12 @@ def sync_gateway(token, gateway_name):
     r = requests.post(url, headers=headers, data=json.dumps(payload))
 
     if r.status_code == 200:
-        print(f"✅ Gateway '{gateway_name}' sincronizado com sucesso!")
+        print(f"Gateway '{gateway_name}' sincronizado com sucesso!")
     else:
-        print(f"❌ Erro ao sincronizar gateway {gateway_name}:")
+        print(f"Erro ao sincronizar gateway {gateway_name}:")
         print(r.status_code)
         print(r.text)
 
-
-# -----------------------------------------------------
-# MAIN
-# -----------------------------------------------------
 
 if __name__ == "__main__":
     args = sys.argv[1:]
