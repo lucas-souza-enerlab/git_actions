@@ -9,7 +9,7 @@
     },
     "devices": [
       {
-        "deviceName": "modificando um conector",
+        "deviceName": "criando um conector",
         "deviceType": "default",
         "address": "192.168.2.110:47808",
         "pollPeriod": 10000,
