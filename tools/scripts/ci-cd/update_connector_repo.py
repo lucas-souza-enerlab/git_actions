@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import pathlib
+from collections import defaultdict
 
 THINGSBOARD_URL = os.getenv("TB_URL")
 USERNAME = os.getenv("TB_USER")
@@ -37,141 +38,90 @@ def get_gateway_id(token, gateway_name):
     sys.exit(1)
 
 
-def get_current_shared_scope(token, device_id):
-    url = f"{THINGSBOARD_URL}/api/plugins/telemetry/DEVICE/{device_id}/values/attributes/SHARED_SCOPE"
-    headers = {"X-Authorization": f"Bearer {token}"}
-
-    r = requests.get(url, headers=headers, timeout=15)
-    if r.status_code != 200:
-        return {}
-
-    try:
-        data = r.json()
-        for attr in data:
-            if attr["key"] == "shared":
-                if isinstance(attr["value"], str):
-                    return json.loads(attr["value"])
-                return attr["value"]
-        return {}
-    except:
-        return {}
+def detect_type_from_name(name):
+    n = name.lower()
+    if "modbus" in n: return "modbus"
+    if "bacnet" in n: return "bacnet"
+    return "custom"
 
 
-def build_connector_payload(connector_name, connector_json):
-    lname = connector_name.lower()
-    if "modbus" in lname:
-        ctype = "modbus"
-    elif "bacnet" in lname:
-        ctype = "bacnet"
-    else:
-        ctype = "custom"
+def load_connectors_from_repo(gateway_folder):
+    connectors = {}
+    for f in pathlib.Path(gateway_folder).glob("connectors/*.json"):
+        name = f.stem
+        with open(f, "r") as fp:
+            cfg = json.load(fp)
 
-    return {
-        connector_name: {
+        connectors[name] = {
             "mode": "advanced",
-            "name": connector_name,
-            "type": ctype,
+            "name": name,
+            "type": detect_type_from_name(name),
             "logLevel": "INFO",
             "sendDataOnlyOnChange": False,
-            "configurationJson": connector_json
+            "configurationJson": cfg
         }
-    }
+
+    return connectors
 
 
+def sync_gateway(token, gateway_name):
+    print(f"\n🔄 Sincronizando gateway: {gateway_name}")
 
-def create_connector(token, device_id, gateway_name, connector_name, connector_json):
-    print(f"\nCriando conector '{connector_name}' no gateway '{gateway_name}'...")
-
-    headers = {
-        "Content-Type": "application/json",
-        "X-Authorization": f"Bearer {token}"
-    }
-
-    shared = get_current_shared_scope(token, device_id)
-
-    existing_connectors = [
-        key for key in shared.keys()
-        if isinstance(shared.get(key), dict)
-        and "configurationJson" in shared.get(key, {})
-    ]
-
-
-    if connector_name not in existing_connectors:
-        existing_connectors.append(connector_name)
-
-
-    active_payload = {"active_connectors": existing_connectors}
-
-    url = f"{THINGSBOARD_URL}/api/plugins/telemetry/DEVICE/{device_id}/SHARED_SCOPE"
-    r = requests.post(url, headers=headers, data=json.dumps(active_payload))
-
-    if r.status_code != 200:
-        print("❌ Falha ao atualizar active_connectors:")
-        print(r.text)
+    gw_path = pathlib.Path("infra/thingsboard") / gateway_name
+    if not gw_path.exists():
+        print(f"❌ Pasta do gateway '{gateway_name}' não encontrada no repo!")
         return
 
-    print("✔ active_connectors atualizado com sucesso.")
+    connectors = load_connectors_from_repo(gw_path)
 
-    connector_payload = build_connector_payload(connector_name, connector_json)
+    active_list = list(connectors.keys())
 
-    r = requests.post(url, headers=headers, data=json.dumps(connector_payload))
+    payload = {"active_connectors": active_list}
+    payload.update(connectors)
 
-    if r.status_code == 200:
-        print(f"✔ Conector '{connector_name}' criado com sucesso!")
-    else:
-        print("❌ Falha ao criar conector:")
-        print(r.text)
-
-
-
-def update_connector(token, device_id, gateway_name, connector_name, connector_json):
-    print(f"\nAtualizando conector '{connector_name}' no gateway '{gateway_name}'...")
+    device_id = get_gateway_id(token, gateway_name)
 
     headers = {
         "Content-Type": "application/json",
         "X-Authorization": f"Bearer {token}"
     }
 
-    payload = build_connector_payload(connector_name, connector_json)
-
     url = f"{THINGSBOARD_URL}/api/plugins/telemetry/DEVICE/{device_id}/SHARED_SCOPE"
+
+    print(f"📤 Enviando {len(connectors)} conectores para o ThingsBoard...")
+
     r = requests.post(url, headers=headers, data=json.dumps(payload))
 
     if r.status_code == 200:
-        print(f"✔ Conector '{connector_name}' atualizado com sucesso!")
+        print(f"✅ Gateway '{gateway_name}' sincronizado com sucesso!")
     else:
-        print("❌ Falha ao atualizar conector:")
+        print(f"❌ Erro ao sincronizar gateway {gateway_name}:")
+        print(r.status_code)
         print(r.text)
 
 
-def infer_from_path(path):
-    p = pathlib.Path(path)
-    gateway_name = p.parent.parent.name
-    connector_name = p.stem
-    with open(path, "r") as f:
-        connector_json = json.load(f)
-    return gateway_name, connector_name, connector_json
-
-
+# -----------------------------------------------------
+# MAIN
+# -----------------------------------------------------
 
 if __name__ == "__main__":
     args = sys.argv[1:]
 
-    if len(args) < 2 or len(args) % 2 != 0:
-        print("Uso: python update_connector_repo.py <A|M caminho.json> ...")
+    if len(args) < 2:
+        print("Uso: update_connector_repo.py <A|M caminho.json> ...")
         sys.exit(1)
 
     token = get_token()
 
+    # descobrir gateways envolvidos no commit
+    gateways = set()
+
     pairs = list(zip(args[0::2], args[1::2]))
-
     for status, path in pairs:
-        gateway, connector, cfg = infer_from_path(path)
-        device_id = get_gateway_id(token, gateway)
+        p = pathlib.Path(path)
+        gateway = p.parent.parent.name
+        gateways.add(gateway)
 
-        if status == "A":
-            create_connector(token, device_id, gateway, connector, cfg)
-        elif status == "M":
-            update_connector(token, device_id, gateway, connector, cfg)
-        else:
-            print(f"Ignorando status {status} para {path}")
+    # sincronizar APENAS os gateways afetados
+    for gw in gateways:
+        sync_gateway(token, gw)
