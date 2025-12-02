@@ -88,7 +88,7 @@ def sync_gateway(token, gateway_name):
 
     url = f"{THINGSBOARD_URL}/api/plugins/telemetry/DEVICE/{device_id}/SHARED_SCOPE"
 
-    print(f"📤 Enviando {len(connectors)} conectores para o ThingsBoard...")
+    print(f" Enviando {len(connectors)} conectores para o ThingsBoard...")
 
     r = requests.post(url, headers=headers, data=json.dumps(payload))
 
@@ -109,7 +109,6 @@ if __name__ == "__main__":
 
     token = get_token()
 
-    # descobrir gateways envolvidos no commit
     gateways = set()
 
     pairs = list(zip(args[0::2], args[1::2]))
@@ -118,6 +117,5 @@ if __name__ == "__main__":
         gateway = p.parent.parent.name
         gateways.add(gateway)
 
-    # sincronizar APENAS os gateways afetados
     for gw in gateways:
         sync_gateway(token, gw)
