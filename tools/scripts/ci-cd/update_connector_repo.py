@@ -67,27 +67,26 @@ def get_current_shared_scope(token, device_id):
 
 
 def build_connector_payload(connector_name, connector_json):
-    """Cria o JSON completo no formato ThingsBoard"""
-    connector_name_upper = connector_name
+    name_lower = connector_name.lower()
 
-    # Detecta tipo (heurística simples)
-    if "port" in json.dumps(connector_json).lower():
+    if "modbus" in name_lower:
         connector_type = "modbus"
-    elif "objectIdentifier" in json.dumps(connector_json):
+    elif "bacnet" in name_lower:
         connector_type = "bacnet"
     else:
         connector_type = "custom"
 
     payload = {
-        connector_name_upper: {
+        connector_name: {
             "mode": "advanced",
-            "name": connector_name_upper,
+            "name": connector_name,
             "type": connector_type,
             "logLevel": "DEBUG",
             "sendDataOnlyOnChange": False,
             "configurationJson": connector_json
         }
     }
+
     return payload
 
 
