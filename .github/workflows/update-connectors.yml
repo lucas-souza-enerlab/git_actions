@@ -31,12 +31,12 @@ jobs:
           echo "$FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Update ThingsBoard connectors
+      - name: Sync ThingsBoard Connectors
         run: |
           FILES="${{ steps.diff.outputs.files }}"
           if [ -z "$FILES" ]; then
             echo "Nenhum arquivo alterado, encerrando."
             exit 0
           fi
+
           python tools/scripts/ci-cd/update_connector_repo.py $FILES
-          
