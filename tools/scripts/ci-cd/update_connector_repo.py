@@ -10,7 +10,7 @@ USERNAME = os.getenv("TB_USER")
 PASSWORD = os.getenv("TB_PASS")
 
 if not all([THINGSBOARD_URL, USERNAME, PASSWORD]):
-    print("Erro: variáveis TB_URL, TB_USER ou TB_PASS não configuradas.")
+    print("Error: variables TB_URL, TB_USER ou TB_PASS not configured.")
     sys.exit(1)
 
 
@@ -27,14 +27,14 @@ def get_gateway_id(token, gateway_name):
     r = requests.get(url, headers=headers, timeout=15)
 
     if r.status_code != 200:
-        print(f"Erro ao buscar gateway '{gateway_name}': {r.status_code}")
+        print(f"Error to get gateway '{gateway_name}': {r.status_code}")
         sys.exit(1)
 
     data = r.json()
     if "id" in data and "id" in data["id"]:
         return data["id"]["id"]
 
-    print(f"Gateway '{gateway_name}' não encontrado.")
+    print(f"Gateway '{gateway_name}' não found.")
     sys.exit(1)
 
 
@@ -69,7 +69,7 @@ def sync_gateway(token, gateway_name):
 
     gw_path = pathlib.Path("infra/thingsboard") / gateway_name
     if not gw_path.exists():
-        print(f"Pasta do gateway '{gateway_name}' não encontrada no repo!")
+        print(f"Gateway folder '{gateway_name}' not found in repo!")
         return
 
     connectors = load_connectors_from_repo(gw_path)
@@ -88,14 +88,14 @@ def sync_gateway(token, gateway_name):
 
     url = f"{THINGSBOARD_URL}/api/plugins/telemetry/DEVICE/{device_id}/SHARED_SCOPE"
 
-    print(f"📤 Enviando {len(connectors)} conectores para o ThingsBoard...")
+    print(f"📤 Sending {len(connectors)} connectors to ThingsBoard...")
 
     r = requests.post(url, headers=headers, data=json.dumps(payload))
 
     if r.status_code == 200:
-        print(f"Gateway '{gateway_name}' sincronizado com sucesso!")
+        print(f"Gateway '{gateway_name}' sync")
     else:
-        print(f"Erro ao sincronizar gateway {gateway_name}:")
+        print(f"Error to sync {gateway_name}:")
         print(r.status_code)
         print(r.text)
 
@@ -104,12 +104,11 @@ if __name__ == "__main__":
     args = sys.argv[1:]
 
     if len(args) < 2:
-        print("Uso: update_connector_repo.py <A|M caminho.json> ...")
+        print("Use: update_connector_repo.py <A|M caminho.json> ...")
         sys.exit(1)
 
     token = get_token()
 
-    # descobrir gateways envolvidos no commit
     gateways = set()
 
     pairs = list(zip(args[0::2], args[1::2]))
@@ -118,6 +117,5 @@ if __name__ == "__main__":
         gateway = p.parent.parent.name
         gateways.add(gateway)
 
-    # sincronizar APENAS os gateways afetados
     for gw in gateways:
         sync_gateway(token, gw)
