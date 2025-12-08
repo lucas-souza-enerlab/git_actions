@@ -27,10 +27,10 @@ jobs:
       - name: Detect changed connector JSONs
         id: diff
         run: |
-          echo "Buscando mudanças no repositório..."
+          echo "Searching for changes in repo..."
           git fetch --depth=2 origin main || true
 
-          # RAW inclui status + caminhos
+         
           RAW=$(git diff --name-status -M50% $(git rev-parse HEAD^) HEAD | grep -E 'infra/thingsboard/.*/connectors/.*\.json$' || true)
 
           echo "RAW:"
@@ -38,7 +38,7 @@ jobs:
 
           OUTPUT=""
 
-          # Normalizar mudanças do git diff
+          
           while read -r line; do
             [ -z "$line" ] && continue
 
@@ -57,7 +57,7 @@ jobs:
                 OUTPUT="$OUTPUT D $FILE1"
                 ;;
               R*)
-                # rename: FILE2 é o novo arquivo
+                
                 OUTPUT="$OUTPUT A $FILE2"
                 ;;
             esac
@@ -75,11 +75,11 @@ jobs:
           FILES="${{ steps.diff.outputs.files }}"
           
           if [ -z "$FILES" ]; then
-            echo "Nenhum arquivo alterado. Nada a fazer."
+            echo "No changes, exiting"
             exit 0
           fi
 
-          echo "Chamando script Python com:"
+          echo "Starting script Python:"
           echo "$FILES"
 
           python tools/scripts/ci-cd/update_connector_repo.py $FILES
