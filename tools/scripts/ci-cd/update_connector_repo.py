@@ -67,10 +67,15 @@ def load_connectors_from_repo(gateway_folder):
 def sync_gateway(token, gateway_name):
     print(f"\nSincronizando gateway: {gateway_name}")
 
-    gw_path = pathlib.Path("infra/thingsboard") / gateway_name
-    if not gw_path.exists():
+    base = pathlib.Path("infra/thingsboard")
+
+    matches = list(base.rglob(gateway_name))
+
+    if not matches:
         print(f"Gateway folder '{gateway_name}' not found in repo!")
         return
+
+    gw_path = matches[0]
 
     connectors = load_connectors_from_repo(gw_path)
 
