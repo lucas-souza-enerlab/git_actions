@@ -83,7 +83,7 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
         client.save_device_attributes(
             device_id=device.id,
             scope="SHARED_SCOPE",
-            attributes=payload
+            body=payload
         )
         print(f" ✓ Gateway '{gateway_name}' synced successfully.")
     except ApiException as e:
