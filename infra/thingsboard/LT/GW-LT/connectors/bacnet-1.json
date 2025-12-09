@@ -9,7 +9,7 @@
     },
     "devices": [
       {
-        "deviceName": "teste",
+        "deviceName": "testeaaa",
         "deviceType": "default",
         "address": "192.168.2.110:47808",
         "pollPeriod": 10000,
