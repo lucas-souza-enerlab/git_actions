@@ -23,6 +23,7 @@ jobs:
           python-version: "3.11"
 
       - run: pip install requests
+      - run: pip install tb-rest-client
 
       - name: Detect changed connector JSONs
         id: diff
