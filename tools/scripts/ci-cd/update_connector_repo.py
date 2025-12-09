@@ -1,53 +1,53 @@
-import requests
-import json
 import os
 import sys
+import json
 import pathlib
 from collections import defaultdict
+
+from tb_rest_client.rest_client_pe import RestClientPE
+from tb_rest_client.rest import ApiException
+
 
 THINGSBOARD_URL = os.getenv("TB_URL")
 USERNAME = os.getenv("TB_USER")
 PASSWORD = os.getenv("TB_PASS")
 
 if not all([THINGSBOARD_URL, USERNAME, PASSWORD]):
-    print("Error: variables TB_URL, TB_USER ou TB_PASS not configured.")
+    print("Error: variables TB_URL, TB_USER or TB_PASS not configured.")
     sys.exit(1)
 
 
-def get_token():
-    url = f"{THINGSBOARD_URL}/api/auth/login"
-    r = requests.post(url, json={"username": USERNAME, "password": PASSWORD}, timeout=15)
-    r.raise_for_status()
-    return r.json().get("token")
+# ---------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------
 
-
-def get_gateway_id(token, gateway_name):
-    url = f"{THINGSBOARD_URL}/api/tenant/devices?deviceName={gateway_name}"
-    headers = {"X-Authorization": f"Bearer {token}"}
-    r = requests.get(url, headers=headers, timeout=15)
-
-    if r.status_code != 200:
-        print(f"Error to get gateway '{gateway_name}': {r.status_code}")
-        sys.exit(1)
-
-    data = r.json()
-    if "id" in data and "id" in data["id"]:
-        return data["id"]["id"]
-
-    print(f"Gateway '{gateway_name}' não found.")
-    sys.exit(1)
-
-
-def detect_type_from_name(name):
+def detect_type_from_name(name: str) -> str:
+    """
+    Simple heuristic to infer connector type from filename.
+    """
     n = name.lower()
-    if "modbus" in n: return "modbus"
-    if "bacnet" in n: return "bacnet"
+    if "modbus" in n:
+        return "modbus"
+    if "bacnet" in n:
+        return "bacnet"
     return "custom"
 
 
-def load_connectors_from_repo(gateway_folder):
+def load_connectors_from_repo(gateway_folder: pathlib.Path) -> dict:
+    """
+    Loads all connector JSONs from:
+        <gateway_folder>/connectors/*.json
+    and builds the payload expected by ThingsBoard.
+    """
+    connectors_dir = gateway_folder / "connectors"
+
+    if not connectors_dir.exists():
+        print(f"No connectors folder found inside {gateway_folder}")
+        return {}
+
     connectors = {}
-    for f in pathlib.Path(gateway_folder).glob("connectors/*.json"):
+
+    for f in connectors_dir.glob("*.json"):
         name = f.stem
         with open(f, "r") as fp:
             cfg = json.load(fp)
@@ -64,11 +64,19 @@ def load_connectors_from_repo(gateway_folder):
     return connectors
 
 
-def sync_gateway(token, gateway_name):
-    print(f"\nSincronizando gateway: {gateway_name}")
+# ---------------------------------------------------------------------
+# Sync Logic
+# ---------------------------------------------------------------------
+
+def sync_gateway(client: RestClientPE, gateway_name: str):
+    """
+    - Locates gateway folder in repo (infra/thingsboard/<gateway>)
+    - Loads connectors
+    - Sends all connectors + active list to ThingsBoard shared scope
+    """
+    print(f"\n=== Sync gateway: {gateway_name} ===")
 
     base = pathlib.Path("infra/thingsboard")
-
     matches = list(base.rglob(gateway_name))
 
     if not matches:
@@ -77,50 +85,75 @@ def sync_gateway(token, gateway_name):
 
     gw_path = matches[0]
 
+    # Load connectors from repo
     connectors = load_connectors_from_repo(gw_path)
-
     active_list = list(connectors.keys())
 
-    payload = {"active_connectors": active_list}
-    payload.update(connectors)
-
-    device_id = get_gateway_id(token, gateway_name)
-
-    headers = {
-        "Content-Type": "application/json",
-        "X-Authorization": f"Bearer {token}"
+    payload = {
+        "active_connectors": active_list,
+        **connectors
     }
 
-    url = f"{THINGSBOARD_URL}/api/plugins/telemetry/DEVICE/{device_id}/SHARED_SCOPE"
+    # -----------------------------------------------------------------
+    # Fetch device from ThingsBoard
+    # -----------------------------------------------------------------
+    try:
+        device = client.get_tenant_device(gateway_name)
+    except ApiException as e:
+        print(f"Error fetching gateway '{gateway_name}': {e}")
+        return
 
-    print(f"📤 Sending {len(connectors)} connectors to ThingsBoard...")
+    print(f" - Found device ID: {device.id.id}")
+    print(f" - Sending {len(connectors)} connectors...")
 
-    r = requests.post(url, headers=headers, data=json.dumps(payload))
+    # -----------------------------------------------------------------
+    # Save shared attributes
+    # -----------------------------------------------------------------
+    try:
+        client.save_device_attributes(
+            device_id=device.id,
+            scope="SHARED_SCOPE",
+            attributes=payload
+        )
+        print(f" ✓ Gateway '{gateway_name}' synced successfully.")
+    except ApiException as e:
+        print(f"Error syncing '{gateway_name}': {e}")
 
-    if r.status_code == 200:
-        print(f"Gateway '{gateway_name}' sync")
-    else:
-        print(f"Error to sync {gateway_name}:")
-        print(r.status_code)
-        print(r.text)
 
+# ---------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------
 
 if __name__ == "__main__":
+
     args = sys.argv[1:]
 
     if len(args) < 2:
-        print("Use: update_connector_repo.py <A|M caminho.json> ...")
+        print("Usage: update_connector_repo.py <A|M path.json> <A|M path2.json> ...")
         sys.exit(1)
 
-    token = get_token()
+    print("Connecting to ThingsBoard...")
+    client = RestClientPE(url=THINGSBOARD_URL)
 
+    try:
+        client.login(USERNAME, PASSWORD)
+        print("Authenticated successfully.")
+    except ApiException as e:
+        print(f"Login failed: {e}")
+        sys.exit(1)
+
+    # Extract gateways from pairs (status, path)
+    pairs = list(zip(args[0::2], args[1::2]))
     gateways = set()
 
-    pairs = list(zip(args[0::2], args[1::2]))
     for status, path in pairs:
         p = pathlib.Path(path)
+        # infer gateway name: <gateway>/connectors/file.json → parent.parent.name
         gateway = p.parent.parent.name
         gateways.add(gateway)
 
+    # Sync each gateway touched by the diff
     for gw in gateways:
-        sync_gateway(token, gw)
+        sync_gateway(client, gw)
+
+    print("\nDone.")
