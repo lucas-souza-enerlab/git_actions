@@ -9,7 +9,7 @@
     },
     "devices": [
       {
-        "deviceName": "teste-bac-sct2",
+        "deviceName": "teste-bac1-sct2",
         "deviceType": "default",
         "address": "192.168.2.110:47808",
         "pollPeriod": 10000,
