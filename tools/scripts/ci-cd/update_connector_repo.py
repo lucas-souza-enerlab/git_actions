@@ -68,22 +68,29 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
     try:
         device = client.get_tenant_device(gateway_name)
     except ApiException:
-        logging.exception(f"API error fetching gateway '{gateway_name}'")
+        logging.error(f"API error fetching gateway '{gateway_name}'", exc_info=True)
         return
     except Exception:
-        logging.exception(f"Unexpected error fetching gateway '{gateway_name}'")
+        logging.error(f"Unexpected error fetching gateway '{gateway_name}'", exc_info=True)
         return
 
     device_id = device.id.id
 
     try:
-        current_attrs = client.get_device_attributes(device.id.id, scope="SHARED_SCOPE")
+        # chamada compatível com versões antigas: apenas entity_id posicional
+        current_attrs = client.get_device_attributes(device_id)
         current_keys = {attr.key for attr in current_attrs}
     except ApiException:
-        logging.warning(f"API error loading attributes for '{gateway_name}', assuming empty.")
+        logging.warning(f"API error loading attributes for '{gateway_name}', assuming no existing connectors.")
+        current_keys = set()
+    except TypeError:
+        logging.info(
+            f"get_device_attributes signature not compatible for '{gateway_name}', "
+            f"skipping existing attribute diff."
+        )
         current_keys = set()
     except Exception:
-        logging.exception(f"Unexpected error loading attributes for '{gateway_name}'")
+        logging.error(f"Unexpected error loading attributes for '{gateway_name}'", exc_info=True)
         current_keys = set()
 
     new_keys = set(payload.keys())
@@ -99,9 +106,9 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
                 keys=keys_to_delete
             )
         except ApiException:
-            logging.exception(f"API error deleting attributes from '{gateway_name}'")
+            logging.error(f"API error deleting attributes from '{gateway_name}'", exc_info=True)
         except Exception:
-            logging.exception(f"Unexpected error deleting attributes from '{gateway_name}'")
+            logging.error(f"Unexpected error deleting attributes from '{gateway_name}'", exc_info=True)
 
     try:
         client.save_device_attributes(
@@ -111,9 +118,9 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
         )
         logging.info(f"Gateway '{gateway_name}' synced successfully.")
     except ApiException:
-        logging.exception(f"API error updating '{gateway_name}'")
+        logging.error(f"API error updating '{gateway_name}'", exc_info=True)
     except Exception:
-        logging.exception(f"Unexpected error updating '{gateway_name}'")
+        logging.error(f"Unexpected error updating '{gateway_name}'", exc_info=True)
 
 
 if __name__ == "__main__":
@@ -130,10 +137,10 @@ if __name__ == "__main__":
         client.login(username=USERNAME, password=PASSWORD)
         logging.info("Authenticated successfully.")
     except ApiException:
-        logging.exception("API login failed")
+        logging.error("API login failed", exc_info=True)
         sys.exit(1)
     except Exception:
-        logging.exception("Unexpected error during login")
+        logging.error("Unexpected error during login", exc_info=True)
         sys.exit(1)
 
     pairs = list(zip(args[0::2], args[1::2]))
