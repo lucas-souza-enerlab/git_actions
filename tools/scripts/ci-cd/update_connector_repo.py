@@ -77,7 +77,7 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
     device_id = device.id.id
 
     try:
-        current_attrs = client.get_device_attributes(device_id=device.id, scope="SHARED_SCOPE")
+        current_attrs = client.get_device_attributes(device.id.id, scope="SHARED_SCOPE")
         current_keys = {attr.key for attr in current_attrs}
     except ApiException:
         logging.warning(f"API error loading attributes for '{gateway_name}', assuming empty.")
