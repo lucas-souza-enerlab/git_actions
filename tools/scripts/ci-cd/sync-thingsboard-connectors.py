@@ -15,9 +15,10 @@ logging.basicConfig(
 THINGSBOARD_URL = os.getenv("TB_URL")
 USERNAME = os.getenv("TB_USER")
 PASSWORD = os.getenv("TB_PASS")
+PATH_URL = os.getenv("TB_GATEWAY_CONFIG_PATH")
 
-if not all([THINGSBOARD_URL, USERNAME, PASSWORD]):
-    logging.error("TB_URL, TB_USER or TB_PASS not configured.")
+if not all([THINGSBOARD_URL, USERNAME, PASSWORD, PATH_URL]):
+    logging.error("TB_URL, TB_USER, TB_PASS or TB_GATEWAY_CONFIG_PATH not configured.")
     sys.exit(1)
 
 
@@ -54,7 +55,7 @@ def load_connectors_from_repo(gateway_folder: pathlib.Path) -> dict:
 def sync_gateway(client: RestClientPE, gateway_name: str):
     logging.info(f"Sync gateway: {gateway_name}")
 
-    base = pathlib.Path("infra/thingsboard-gateway")
+    base = pathlib.Path(PATH_URL)
     matches = list(base.rglob(gateway_name))
     if not matches:
         logging.warning(f"Gateway folder '{gateway_name}' not found in repo.")
@@ -77,11 +78,12 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
     device_id = device.id.id
 
     try:
-        # chamada compatível com versões antigas: apenas entity_id posicional
         current_attrs = client.get_device_attributes(device_id)
         current_keys = {attr.key for attr in current_attrs}
     except ApiException:
-        logging.warning(f"API error loading attributes for '{gateway_name}', assuming no existing connectors.")
+        logging.warning(
+            f"API error loading attributes for '{gateway_name}', assuming no existing connectors."
+        )
         current_keys = set()
     except TypeError:
         logging.info(
@@ -108,7 +110,9 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
         except ApiException:
             logging.error(f"API error deleting attributes from '{gateway_name}'", exc_info=True)
         except Exception:
-            logging.error(f"Unexpected error deleting attributes from '{gateway_name}'", exc_info=True)
+            logging.error(
+                f"Unexpected error deleting attributes from '{gateway_name}'", exc_info=True
+            )
 
     try:
         client.save_device_attributes(
@@ -127,7 +131,9 @@ if __name__ == "__main__":
     args = sys.argv[1:]
 
     if len(args) < 2:
-        logging.error("Usage: update_connector_repo.py <A|M path.json> <A|M path2.json> ...")
+        logging.error(
+            "Usage: sync-thingsboard-connectors.py <A|M path.json> <A|M path2.json> ..."
+        )
         sys.exit(1)
 
     logging.info("Connecting to ThingsBoard...")

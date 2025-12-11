@@ -4,16 +4,19 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "infra/thingsboard-gateway/**/connectors/*.json"
+      - "infra/thingsboard-gateway/**/connectors/*.json"  # ← hardcoded, obrigatório
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     env:
       TB_URL: ${{ vars.TB_URL }}
       TB_USER: ${{ secrets.TB_USER }}
       TB_PASS: ${{ secrets.TB_PASS }}
+
+      TB_GATEWAY_CONFIG_PATH: ${{ vars.TB_GATEWAY_CONFIG_PATH }}
 
     steps:
       - uses: actions/checkout@v4
@@ -21,50 +24,32 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          
+
       - run: pip install tb-rest-client
 
       - name: Detect changed connector JSONs
         id: diff
         run: |
-          echo "Searching for changes in repo..."
+          echo "Using gateway path: ${TB_GATEWAY_CONFIG_PATH}"
+
           git fetch --depth=2 origin main || true
 
-         
-          RAW=$(git diff --name-status -M50% $(git rev-parse HEAD^) HEAD | grep -E 'infra/thingsboard-gateway/.*/connectors/.*\.json$' || true)
-
-          echo "RAW:"
-          echo "$RAW"
+          RAW=$(git diff --name-status -M50% $(git rev-parse HEAD^) HEAD | \
+            grep -E "${TB_GATEWAY_CONFIG_PATH}/.*/connectors/.*\.json$" || true)
 
           OUTPUT=""
-
-          
           while read -r line; do
             [ -z "$line" ] && continue
-
             STATUS=$(echo "$line" | awk '{print $1}')
             FILE1=$(echo "$line" | awk '{print $2}')
             FILE2=$(echo "$line" | awk '{print $3}')
-
             case "$STATUS" in
-              M)
-                OUTPUT="$OUTPUT M $FILE1"
-                ;;
-              A)
-                OUTPUT="$OUTPUT A $FILE1"
-                ;;
-              D)
-                OUTPUT="$OUTPUT D $FILE1"
-                ;;
-              R*)
-                
-                OUTPUT="$OUTPUT A $FILE2"
-                ;;
+              M) OUTPUT="$OUTPUT M $FILE1" ;;
+              A) OUTPUT="$OUTPUT A $FILE1" ;;
+              D) OUTPUT="$OUTPUT D $FILE1" ;;
+              R*) OUTPUT="$OUTPUT A $FILE2" ;;
             esac
           done <<< "$RAW"
-
-          echo "PROCESSADO:"
-          echo "$OUTPUT"
 
           echo "files<<EOF" >> $GITHUB_OUTPUT
           echo "$OUTPUT" >> $GITHUB_OUTPUT
@@ -75,11 +60,11 @@ jobs:
           FILES="${{ steps.diff.outputs.files }}"
           
           if [ -z "$FILES" ]; then
-            echo "No changes, exiting"
+            echo "No changes detected — exiting."
             exit 0
           fi
 
-          echo "Starting script Python:"
-          echo "$FILES"
+          echo "Starting Python sync using gateway base path: $TB_GATEWAY_CONFIG_PATH"
 
-          python tools/scripts/ci-cd/update_connector_repo.py $FILES
+          python tools/scripts/ci-cd/sync-thingsboard-connectors.py \
+            $FILES
