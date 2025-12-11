@@ -26,18 +26,15 @@ def detect_type_from_name(name: str) -> str:
 
 def load_connectors_from_repo(gateway_folder: pathlib.Path) -> dict:
     connectors_dir = gateway_folder / "connectors"
-
     if not connectors_dir.exists():
-        print(f"No connectors folder found inside {gateway_folder}")
         return {}
 
     connectors = {}
 
     for f in connectors_dir.glob("*.json"):
-        name = f.stem
         with open(f, "r") as fp:
             cfg = json.load(fp)
-
+        name = f.stem
         connectors[name] = {
             "mode": "advanced",
             "name": name,
@@ -55,20 +52,15 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
 
     base = pathlib.Path("infra/thingsboard-gateway")
     matches = list(base.rglob(gateway_name))
-
     if not matches:
         print(f"Gateway folder '{gateway_name}' not found in repo!")
         return
 
     gw_path = matches[0]
-
     connectors = load_connectors_from_repo(gw_path)
     active_list = list(connectors.keys())
 
-    payload = {
-        "active_connectors": active_list,
-        **connectors
-    }
+    payload = {"active_connectors": active_list, **connectors}
 
     try:
         device = client.get_tenant_device(gateway_name)
@@ -76,8 +68,28 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
         print(f"Error fetching gateway '{gateway_name}': {e}")
         return
 
-    print(f" - Found device ID: {device.id.id}")
-    print(f" - Sending {len(connectors)} connectors...")
+    device_id = device.id.id
+
+    try:
+        current_attrs = client.get_device_attributes(device_id=device.id, scope="SHARED_SCOPE")
+        current_keys = {attr.key for attr in current_attrs}
+    except:
+        current_keys = set()
+
+    new_keys = set(payload.keys())
+    keys_to_delete = list(current_keys - new_keys)
+
+    if keys_to_delete:
+        try:
+            client.delete_entity_attributes(
+                entity_type="DEVICE",
+                entity_id=device_id,
+                scope="SHARED_SCOPE",
+                keys=keys_to_delete
+            )
+            print(f"Removed deleted connectors: {keys_to_delete}")
+        except Exception as e:
+            print(f"Error deleting attributes: {e}")
 
     try:
         client.save_device_attributes(
@@ -85,7 +97,7 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
             scope="SHARED_SCOPE",
             body=payload
         )
-        print(f" ✓ Gateway '{gateway_name}' synced successfully.")
+        print(f"✓ Gateway '{gateway_name}' synced successfully.")
     except ApiException as e:
         print(f"Error syncing '{gateway_name}': {e}")
 
@@ -108,12 +120,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     pairs = list(zip(args[0::2], args[1::2]))
-    gateways = set()
-
-    for status, path in pairs:
-        p = pathlib.Path(path)
-        gateway = p.parent.parent.name
-        gateways.add(gateway)
+    gateways = {pathlib.Path(path).parent.parent.name for status, path in pairs}
 
     for gw in gateways:
         sync_gateway(client, gw)
