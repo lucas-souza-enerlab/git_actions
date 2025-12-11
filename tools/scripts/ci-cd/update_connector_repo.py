@@ -53,7 +53,7 @@ def load_connectors_from_repo(gateway_folder: pathlib.Path) -> dict:
 def sync_gateway(client: RestClientPE, gateway_name: str):
     print(f"\n=== Sync gateway: {gateway_name} ===")
 
-    base = pathlib.Path("infra/thingsboard")
+    base = pathlib.Path("infra/thingsboard-gateway")
     matches = list(base.rglob(gateway_name))
 
     if not matches:

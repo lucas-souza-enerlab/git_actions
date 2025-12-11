@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - "infra/thingsboard/**/connectors/*.json"
+      - "infra/thingsboard-gateway/**/connectors/*.json"
   workflow_dispatch:
 
 jobs:
@@ -21,8 +21,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
-      - run: pip install requests
+          
       - run: pip install tb-rest-client
 
       - name: Detect changed connector JSONs
@@ -32,7 +31,7 @@ jobs:
           git fetch --depth=2 origin main || true
 
          
-          RAW=$(git diff --name-status -M50% $(git rev-parse HEAD^) HEAD | grep -E 'infra/thingsboard/.*/connectors/.*\.json$' || true)
+          RAW=$(git diff --name-status -M50% $(git rev-parse HEAD^) HEAD | grep -E 'infra/thingsboard-gateway/.*/connectors/.*\.json$' || true)
 
           echo "RAW:"
           echo "$RAW"
