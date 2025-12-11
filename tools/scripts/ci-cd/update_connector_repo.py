@@ -86,12 +86,13 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
         logging.error("Error fetching gateway '%s': %s", gateway_name, e)
         return
 
-    device_id = device.id.id
+    device_id = device.id.id   # UUID string real
 
-    # --- Fetch current attributes ---
+    # --- Fetch current attributes ---  (CORRIGIDO!)
     try:
         current_attrs = client.get_device_attributes(
-            device_id=device.id,
+            entity_type="DEVICE",
+            entity_id=device_id,
             scope="SHARED_SCOPE"
         )
         current_keys = {attr.key for attr in current_attrs}
@@ -115,10 +116,11 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
         except ApiException as e:
             logging.error("Error deleting attributes for '%s': %s", gateway_name, e)
 
-    # --- Save updated attributes ---
+    # --- Save updated attributes --- (CORRIGIDO!)
     try:
         client.save_device_attributes(
-            device_id=device.id,
+            entity_type="DEVICE",
+            entity_id=device_id,
             scope="SHARED_SCOPE",
             body=payload
         )
