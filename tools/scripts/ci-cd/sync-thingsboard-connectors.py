@@ -100,19 +100,23 @@ def sync_gateway(client: RestClientPE, gateway_name: str):
 
     if keys_to_delete:
         logging.info(f"Removing old connectors: {keys_to_delete}")
-        try:
-            client.delete_entity_attributes(
-                entity_type="DEVICE",
-                entity_id=device_id,
-                scope="SHARED_SCOPE",
-                keys=keys_to_delete
-            )
-        except ApiException:
-            logging.error(f"API error deleting attributes from '{gateway_name}'", exc_info=True)
-        except Exception:
-            logging.error(
-                f"Unexpected error deleting attributes from '{gateway_name}'", exc_info=True
-            )
+        
+        # Deletar em lotes menores para evitar problemas com muitos atributos
+        BATCH_SIZE = 10
+        for i in range(0, len(keys_to_delete), BATCH_SIZE):
+            batch = keys_to_delete[i:i + BATCH_SIZE]
+            try:
+                client.delete_entity_attributes(
+                    entity_type="DEVICE",
+                    entity_id=device_id,
+                    scope="SHARED_SCOPE",
+                    keys=batch
+                )
+                logging.info(f"Deleted batch: {batch}")
+            except ApiException as e:
+                logging.error(f"API error deleting batch {batch} from '{gateway_name}': {e}")
+            except Exception as e:
+                logging.error(f"Unexpected error deleting batch {batch} from '{gateway_name}': {e}")
 
     try:
         client.save_device_attributes(
