@@ -9,7 +9,7 @@
     },
     "devices": [
       {
-        "deviceName": "poha",
+        "deviceName": "pohadokrl",
         "deviceType": "default",
         "address": "192.168.2.110:47808",
         "pollPeriod": 10000,
