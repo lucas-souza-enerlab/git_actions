@@ -9,7 +9,7 @@
     },
     "devices": [
       {
-        "deviceName": "sct22",
+        "deviceName": "sct23",
         "deviceType": "default",
         "address": "192.168.2.110:47808",
         "pollPeriod": 10000,
